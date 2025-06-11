@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Emulator-based Memory-efficient Fine-tuning with LoRA Correction">
+  <meta name="keywords" content="memory-efficient fine-tuning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>EMLoC</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">EMLoC: Emulator-based Memory-efficient Fine-tuning with LoRA Correction</h1>
+
+          <div class="is-size-5 publication-authors">
+            <!-- Paper authors -->
+            <span class="author-block">
+              <a href="https://hsi-che-lin.github.io/" target="_blank">Hsi-Che Lin</a>,
+              <sup style="font-size: 0.6em;">1</sup>
+            </span>
+            
+            <span class="author-block">
+              <a href="https://chuyu.org/?fbclid=IwZXh0bgNhZW0CMTAAAR10wQyaYpKvgATLl8pavKrLJyoATjrC6KypMKehka00fbgXDyuIug9BkfA_aem_w8m5sW20POmHM-tjJZHZSg" target="_blank">Yu-Chu Yu</a>,
+              <sup style="font-size: 0.6em;">1</sup>
+            </span>
+            
+            <span class="author-block">
+              <a href="https://github.com/JustinKai0527" target="_blank">Kai-Po Chang</a>,
+              <sup style="font-size: 0.6em;">1,2</sup>
+            </span>
+            
+            <span class="author-block">
+              <a href="https://vllab.ee.ntu.edu.tw/ycwang.html" target="_blank">Yu-Chiang Frank Wang</a>
+              <sup style="font-size: 0.6em;">1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <sup style="font-size: 0.6em;">1</sup>
+              National Taiwan University,
+              <sup style="font-size: 0.6em;">2</sup>
+              NVIDIA
+            </span><br>
+            <span class="author-block">arXiv Preprint 2025</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              
+              <!-- Arxiv PDF link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/hsi-che-lin/EMLoC" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- ArXiv abstract Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser image-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <img src="static/images/teaser.svg" width="90%"/>
+      <p>
+        The dilemma caused by additional memory overhead during fine-tuning.
+        <b>(a)</b> Users opt for a smaller 8B model, sacrificing emergent capabilities and underutilizing available hardware.
+        <b>(b)</b> Use of a larger 26B model requiring memory exceeding the hardware limit.
+        <b>(c)</b> Our <b>EMLoC</b> utilizes a smaller model during fine-tuning, allowing the same budget for both training and inference.
+      </p>
+    </div>
+  </div>
+</section><br>
+<!-- End teaser image -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Open-source foundation models have seen rapid adoption and development, enabling powerful general-purpose capabilities across diverse domains.
+            However, fine-tuning large foundation models for domain-specific or personalized tasks remains prohibitively expensive for most users due to the significant memory overhead beyond that of inference.
+            We introduce EMLoC, an Emulator-based Memory-efficient fine-tuning framework with LoRA Correction, which enables model fine-tuning within the same memory budget required for inference.
+            EMLoC constructs a task-specific light-weight emulator using activation-aware singular value decomposition (SVD) on a small downstream calibration set.
+            Fine-tuning then is performed on this lightweight emulator via LoRA. To tackle the misalignment between the original model and the distilled emulator, we propose a novel compensation algorithm to correct the fine-tuned LoRA module, which thus can be merged into the original model for inference.
+            EMLoC supports flexible compression ratios and standard training pipelines, making it adaptable to a wide range of applications. Extensive experiments demonstrate that EMLoC outperforms other baselines across multiple datasets and modalities.
+            Moreover, without quantization, EMLoC enables fine-tuning of a 38B model on a single 24GB consumer GPU—bringing efficient and practical model adaptation to individual users.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Method -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Method</h2>
+      <div id="method-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="static/images/overview.svg" alt="Method Overview" width="100%"/>
+          <h2 class="subtitle has-text-centered has-text-justified" style="padding-bottom: 20px;">
+            Figure 1. Overview of proposed <b>EMLoC</b>.
+            <b>Stage 1</b>: Construct a downstream-aware lightweight emulator.
+            <b>Stage 2</b>: Fine-tune the emulator via LoRA, allowing reduced memory costs.
+            <b>Stage 3</b>: Update the LoRA module to compensate the misalignment between the full model and emulator. (see Fig. 2)
+          </h2>
+        </div>
+        <div class="item">
+          <img src="static/images/LoraCorrection.svg" alt="LoRA Correction" width="100%"/>
+          <h2 class="subtitle has-text-centered has-text-justified" style="padding-bottom: 20px;">
+            Figure 2. <b>LoRA correction</b>.
+            To alleviate the misalignment that arises from fine-tuning the lightweight emulator but
+            running inference on the original model, LoRA parameters are corrected via feature spaces
+            between the emulator and the original model.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End method -->
+
+<!-- Quantitative results -->
+<section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+      <div id="method-carousel" class="carousel results-carousel">
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/main.svg" alt="Table Main" width="80%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 90%; text-align: center; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 1. Performance comparisons of finetuning approaches on VQA with different memory costs.
+          </h2>
+        </div>
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/large.svg" alt="Table Large" width="60%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 70%; text-align: justify; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 2. <b>Applying EMLoC to 26B and 38B models.</b> Note that a 5B-sized emulator is considered, and all experiments are conducted under a 24GB memory budget.
+          </h2>
+        </div>
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/nlp.svg" alt="Table NLP" width="50%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 60%; text-align: center; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 3. Applying EMLoC to NLP tasks.
+          </h2>
+        </div>
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/setting.svg" alt="Table Setting" width="80%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 90%; text-align: justify; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 4. <b>Comparisons of emulator construction settings.</b>
+            Note that, previous works require external data and additional continual pretraining.
+            We validate that both row pruning and SVD can be applied for our emulator construction
+            with supperior performances using only downstream data.
+          </h2>
+        </div>
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/qlora.svg" alt="Table QLoRA" width="80%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 90%; text-align: justify; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 5. <b>Comparison between EMLoC and QLoRA.</b>
+            Quantization-based methods offer limited flexibility in memory reduction and can degrade inference performance,
+            while EMLoC enables fine-tuning on consumer-grade 24GB GPUs without affecting the base model's inference quality.
+          </h2>
+        </div>
+        <div class="item" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+          <img src="static/images/tables/diffusion.svg" alt="Table Diffusion" width="60%" style="display: block; margin: 0 auto;"/>
+          <h2 class="subtitle" style="width: 70%; text-align: justify; margin: 0 auto; padding-top: 10px; padding-bottom: 20px;">
+            Table 6. <b>Quantitative results of applying EMLoC to diffusion model.</b>
+            EMLoC achieves comparable, sometimes slightly lower, performance than direct fine-tuning while significantly reducing memory usage.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End quantitative results -->
+
+<!-- Qualitative results -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+      <img src="static/images/qualitative.svg" alt="Qualitative" class="center-image" style="max-width: 100%; height: auto;"/>
+      <p class="has-text-centered has-text-justified" style="margin-bottom: -30px; font-size: 1.2rem; line-height: 1.3;">
+        <b>EMLoC enables personalization of FLUX.1-dev using 24GB GPU.</b>
+        DreamBooth with LoRA is used to personalize the 12B FLUX.1-dev diffusion model,
+        illustrating that <b>EMLoC</b> can be effectively extended to generative tasks beyond text.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- End qualitative results -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>BibTex Code Here</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
