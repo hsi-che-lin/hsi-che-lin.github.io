@@ -38,18 +38,18 @@
           <div class="is-size-5 publication-authors">
             <!-- Paper authors -->
             <span class="author-block">
-              <a href="https://hsi-che-lin.github.io/" target="_blank">Hsi-Che Lin</a>,
-              <sup style="font-size: 0.6em;">1</sup>
+              <a href="https://hsi-che-lin.github.io/" target="_blank">Hsi-Che Lin</a>
+              <sup style="font-size: 0.6em;">1</sup>,
             </span>
             
             <span class="author-block">
-              <a href="https://chuyu.org/?fbclid=IwZXh0bgNhZW0CMTAAAR10wQyaYpKvgATLl8pavKrLJyoATjrC6KypMKehka00fbgXDyuIug9BkfA_aem_w8m5sW20POmHM-tjJZHZSg" target="_blank">Yu-Chu Yu</a>,
-              <sup style="font-size: 0.6em;">1</sup>
+              <a href="https://chuyu.org/?fbclid=IwZXh0bgNhZW0CMTAAAR10wQyaYpKvgATLl8pavKrLJyoATjrC6KypMKehka00fbgXDyuIug9BkfA_aem_w8m5sW20POmHM-tjJZHZSg" target="_blank">Yu-Chu Yu</a>
+              <sup style="font-size: 0.6em;">1</sup>,
             </span>
             
             <span class="author-block">
-              <a href="https://github.com/JustinKai0527" target="_blank">Kai-Po Chang</a>,
-              <sup style="font-size: 0.6em;">1,2</sup>
+              <a href="https://github.com/JustinKai0527" target="_blank">Kai-Po Chang</a>
+              <sup style="font-size: 0.6em;">1,2</sup>,
             </span>
             
             <span class="author-block">
@@ -138,7 +138,7 @@
             However, fine-tuning large foundation models for domain-specific or personalized tasks remains prohibitively expensive for most users due to the significant memory overhead beyond that of inference.
             We introduce EMLoC, an Emulator-based Memory-efficient fine-tuning framework with LoRA Correction, which enables model fine-tuning within the same memory budget required for inference.
             EMLoC constructs a task-specific light-weight emulator using activation-aware singular value decomposition (SVD) on a small downstream calibration set.
-            Fine-tuning then is performed on this lightweight emulator via LoRA. To tackle the misalignment between the original model and the distilled emulator, we propose a novel compensation algorithm to correct the fine-tuned LoRA module, which thus can be merged into the original model for inference.
+            Fine-tuning then is performed on this lightweight emulator via LoRA. To tackle the misalignment between the original model and the compressed emulator, we propose a novel compensation algorithm to correct the fine-tuned LoRA module, which thus can be merged into the original model for inference.
             EMLoC supports flexible compression ratios and standard training pipelines, making it adaptable to a wide range of applications. Extensive experiments demonstrate that EMLoC outperforms other baselines across multiple datasets and modalities.
             Moreover, without quantization, EMLoC enables fine-tuning of a 38B model on a single 24GB consumer GPU—bringing efficient and practical model adaptation to individual users.
           </p>
